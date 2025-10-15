@@ -103,7 +103,7 @@ class NetworkRunner extends Task {
 				foreach ($this->Plugin->getServer()->getOnlinePlayers() as $plr) {
 					$player = new VoiceCraftPlayer();
 					$player->PlayerId = $plr->getUniqueId()->toString();
-          				$player->DimensionId = $plr->getWorld()->getId();
+					$player->DimensionId = $plr->getWorld()->getId();
 					$player->Location = $plr->getLocation()->asVector3();
 					$player->Location->y += $plr->getEyeHeight();
 					$player->Rotation = $plr->getLocation()->yaw;
