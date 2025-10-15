@@ -218,3 +218,9 @@ pip-log.txt
 
 /phpstan/vendor/
 /phpstan/composer.lock
+
+
+# project specific
+/tools/uploader_commands.txt
+*.phar
+/*.bat

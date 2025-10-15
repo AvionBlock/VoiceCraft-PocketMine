@@ -1,6 +1,10 @@
-Ip: "localhost"
-Port: "9050"
-ServerKey: ""
-Settings:
-  ProximityDistance: 30
-  ProximityToggle: true
+config:
+  debug: false                   # Debug mode: enabled (true) or disabled (false)
+
+  lang: "en"                     # Language used in the plugin
+
+  host: localhost                # Server host the plugin interacts with
+  port: 9050                     # Port for server interaction
+  server-key: "key"              # Server key for authentication
+
+  auto-reconnect: true           # Enable/disable auto reconnection when connection lost
