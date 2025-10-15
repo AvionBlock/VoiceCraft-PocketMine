@@ -2,11 +2,23 @@ name: CI
 
 on:
   push:
+    branches:
+      - main
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.gitignore'
+      - '**/*.gitattributes'
   pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.gitignore'
+      - '**/*.gitattributes'
   workflow_dispatch:
 
 jobs:
-  build:
+  analyze:
     name: PHPStan analysis
     runs-on: ubuntu-22.04
     strategy:
@@ -42,3 +54,25 @@ jobs:
       - name: Run PHPStan
         working-directory: ./phpstan
         run: vendor/bin/phpstan analyze
+
+  build:
+    name: Build
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Setup PHP
+        uses: pmmp/setup-php-action@3.2.0
+        with:
+          php-version: 8.3
+          install-path: "./bin"
+          pm-version-major: 5
+
+      - name: Build to .phar
+        run: php -dphar.readonly=0 ./tools/DevToolsConsoleScript.php --make ./ --out VoiceCraft.phar
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: VoiceCraft.phar
+          path: ./VoiceCraft.phar

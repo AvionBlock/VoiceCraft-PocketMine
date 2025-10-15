@@ -2,8 +2,10 @@
 
 PocketMine plugin/implementation of VoiceCraft Server Sided Positioning
 
-**Current state**: UNFINISHED
+**Current state**: UNFINISHED  
 We're actively developing. The plugin doesn't exist yet!
+
+See [TODO.md](TODO.md) for the current status!
 
 
 ## How to set up
@@ -22,6 +24,24 @@ We're actively developing. The plugin doesn't exist yet!
 4. Join PocketMine server and execute command `/voicecraft:bind [your_bind_key]`
 5. Once you've done everything you will be connected to VoiceCraft server and you can talk to others
 
+
+# Developers
+
+## Using source code
+
+When you have the DevTools plugin installed in pocketmine (it should come with it by default)
+then you should be able to just upload the whole repo as a folder to your plugins folder.
+
+
+## Using .phar file (easier)
+
+To build the project into a .phar, you'll need to have php (8) with `php_yaml` extension installed.  
+Then run the following command:
+```sh
+php -dphar.readonly=0 .\tools\DevToolsConsoleScript.php --make ./ --out VoiceCraft.phar
+```
+
+Then upload the `VoiceCraft.phar` to the `plugins` folder in your server.
 
 
 ## PHPStan analysis

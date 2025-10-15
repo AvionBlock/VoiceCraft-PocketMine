@@ -1,36 +1,64 @@
 name: VoiceCraft
-main: AvionBlock\VoiceCraft\MainClass
-src-namespace-prefix: AvionBlock\VoiceCraft
-version: 1.0.7+dev
-api: 5.0.0
-
-load: POSTWORLD
-author: AvionBlock
-
-authors:
-  - Miniontoby
-  - LuciaDX
-  - SineVector241
-
 description: PocketMine plugin/implementation of VoiceCraft Server Sided Positioning
 website: https://github.com/AvionBlock/VoiceCraft-PocketMine
+version: 1.0.7+dev
+author: AvionBlock
+authors:
+  - Miniontoby
+  - SineVector241
+
+main: AvionBlock\VoiceCraft\MainClass
+src-namespace-prefix: AvionBlock\VoiceCraft
+api: 5.0.0
+load: POSTWORLD
+
 commands:
-  voicecraft:
-    description: VoiceCraft command
-    usage: "/voicecraft <bind|connect|disconnect|reload>"
-    aliases:
-      - vc
-    permission: voicecraft.command.voicecraft
+  settings:
+    description: Gives you an item to access voicecraft settings panel/gui.
+    usage: "/settings"
+    permission: voicecraft.command.settings
+  bindfake:
+    description: Binds a fake player to a client connected to the voicecraft server.
+    usage: "/bindfake <Key: integer> <Name: string>"
+    permission: voicecraft.command.bindfake
+  updatefake:
+    description: Updates a fake player to a client connected to the voicecraft server.
+    usage: "/updatefake <Id: string>"
+    permission: voicecraft.command.updatefake
+  setautobind:
+    description: Sets an auto bind tag for the player who ran the command.
+    usage: "/setautobind <Key: integer>"
+    permission: voicecraft.command.setautobind
+  clearautobind:
+    description: Clears the auto bind tag for the player who ran the command.
+    usage: "/clearautobind"
+    permission: voicecraft.command.clearautobind
+
 permissions:
-  voicecraft.command.voicecraft:
-    description: "Allows the user to run the voicecraft command"
-    default: true
-  voicecraft.command.bind:
-    description: "Allows the user to run the voicecraft bind command"
-    default: true
   voicecraft.command.connect:
     description: "Allows the user to run the voicecraft connect command"
     default: op
   voicecraft.command.disconnect:
     description: "Allows the user to run the voicecraft disconnect command"
     default: op
+  voicecraft.command.settings:
+    description: "Allows the user to run the voicecraft settings command"
+    default: op
+  voicecraft.command.bind:
+    description: "Allows the user to run the voicecraft bind command"
+    default: true
+  voicecraft.command.bindfake:
+    description: "Allows the user to run the voicecraft bindfake command"
+    default: op
+  voicecraft.command.updatefake:
+    description: "Allows the user to run the voicecraft updatefake command"
+    default: op
+  voicecraft.command.autoconnect:
+    description: "Allows the user to run the voicecraft autoconnect command"
+    default: true
+  voicecraft.command.setautobind:
+    description: "Allows the user to run the voicecraft setautobind command"
+    default: true
+  voicecraft.command.clearautobind:
+    description: "Allows the user to run the voicecraft clearautobind command"
+    default: true

@@ -8,44 +8,51 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat;
+use AvionBlock\VoiceCraft\Commands;
+use AvionBlock\VoiceCraft\Network\Network;
+use AvionBlock\VoiceCraft\Network\Payloads;
 
 class MainClass extends PluginBase{
+	public Network $Network;
 
-	public function onLoad() : void{
+	public function onLoad(): void {
 		$this->getLogger()->info(TextFormat::WHITE . "I've been loaded!");
 	}
 
-	public function onEnable() : void{
+	public function onEnable(): void {
+		$this->Network = new Network($this);
+
 		$this->saveDefaultConfig();
-		$Config = $this->getConfig()->getAll();
+		$Config = $this->getConfig()->get("config");
 
 		$this->getServer()->getPluginManager()->registerEvents(new ExampleListener($this), $this);
-		// $this->getScheduler()->scheduleRepeatingTask(new BroadcastTask($this->getServer()), 120);
 		$this->getLogger()->info(TextFormat::DARK_GREEN . "I've been enabled!");
 
-/*
-        $this->getServer()->getCommandMap()->registerAll("voicecraft", [
-            new Bind($this),
-            new Settings($this)
-        ]);
-*/
+		$this->getServer()->getCommandMap()->registerAll("voicecraft", [
+			new Commands\Connect($this),
+			new Commands\Disconnect($this),
+			// new Commands\Settings($this),
+			new Commands\Bind($this),
+			// new Commands\BindFake($this),
+			// new Commands\UpdateFake($this),
+			new Commands\AutoConnect($this),
+			// new Commands\SetAutoBind($this),
+			// new Commands\ClearAutoBind($this),
+		]);
+
+		//if ($Config["autoConnectOnStart"]) {
+			$this->getLogger()->info("Auto connection enabled, Connecting to server...");
+			try {
+				$this->Network->AutoConnect();
+				$this->getLogger()->info(TextFormat::GREEN . "Successfully auto connected to VOIP server.");
+			} catch (\Exception $ex) {
+				$this->getLogger()->info(TextFormat::RED . "Failed to auto connect to VOIP server.");
+			}
+		// }
 	}
 
-	public function onDisable() : void{
+	public function onDisable(): void {
+		$this->Network->NetworkRunner->Stop();
 		$this->getLogger()->info(TextFormat::DARK_RED . "I've been disabled!");
-	}
-
-	public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
-		switch($command->getName()){
-			case "voicecraft":
-				$sender->sendMessage("Hello " . $sender->getName() . "!");
-
-				return true;
-			case "reload":
-				$this->reloadConfig();
-				return true;
-			default:
-				throw new \AssertionError("This line will never be executed");
-		}
 	}
 }
