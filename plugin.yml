@@ -1,6 +1,6 @@
 name: VoiceCraft
-main: VoiceCraft\MainClass
-src-namespace-prefix: VoiceCraft
+main: AvionBlock\VoiceCraft\MainClass
+src-namespace-prefix: AvionBlock\VoiceCraft
 version: 1.0.7+dev
 api: 5.0.0
 
@@ -21,10 +21,6 @@ commands:
     aliases:
       - vc
     permission: voicecraft.command.voicecraft
-  voicecraft:connect:
-    description: VoiceCraft connect command
-    usage: "/voicecraft:connect <host> <port> <server-key>"
-    permission: voicecraft.command.connect
 permissions:
   voicecraft.command.voicecraft:
     description: "Allows the user to run the voicecraft command"

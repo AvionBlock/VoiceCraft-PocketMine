@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VoiceCraft;
+namespace AvionBlock\VoiceCraft;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
@@ -20,7 +20,7 @@ class MainClass extends PluginBase{
 		$Config = $this->getConfig()->getAll();
 
 		$this->getServer()->getPluginManager()->registerEvents(new ExampleListener($this), $this);
-		$this->getScheduler()->scheduleRepeatingTask(new BroadcastTask($this->getServer()), 120);
+		// $this->getScheduler()->scheduleRepeatingTask(new BroadcastTask($this->getServer()), 120);
 		$this->getLogger()->info(TextFormat::DARK_GREEN . "I've been enabled!");
 
 /*

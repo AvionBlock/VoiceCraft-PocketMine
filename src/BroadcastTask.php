@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VoiceCraft;
+namespace AvionBlock\VoiceCraft;
 
 use pocketmine\scheduler\Task;
 use pocketmine\Server;
@@ -12,6 +12,6 @@ class BroadcastTask extends Task{
 	public function __construct(private Server $server){ }
 
 	public function onRun() : void{
-		$this->server->broadcastMessage("[ExamplePlugin] I've run on tick " . $this->server->getTick());
+		$this->server->broadcastMessage("[VoiceCraft] I've run on tick " . $this->server->getTick());
 	}
 }
