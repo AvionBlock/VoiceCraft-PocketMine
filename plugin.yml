@@ -1,0 +1,40 @@
+name: VoiceCraft
+main: VoiceCraft\MainClass
+src-namespace-prefix: VoiceCraft
+version: 1.0.7+dev
+api: 5.0.0
+
+load: POSTWORLD
+author: AvionBlock
+
+authors:
+  - Miniontoby
+  - LuciaDX
+  - SineVector241
+
+description: PocketMine plugin/implementation of VoiceCraft Server Sided Positioning
+website: https://github.com/AvionBlock/VoiceCraft-PocketMine
+commands:
+  voicecraft:
+    description: VoiceCraft command
+    usage: "/voicecraft <bind|connect|disconnect|reload>"
+    aliases:
+      - vc
+    permission: voicecraft.command.voicecraft
+  voicecraft:connect:
+    description: VoiceCraft connect command
+    usage: "/voicecraft:connect <host> <port> <server-key>"
+    permission: voicecraft.command.connect
+permissions:
+  voicecraft.command.voicecraft:
+    description: "Allows the user to run the voicecraft command"
+    default: true
+  voicecraft.command.bind:
+    description: "Allows the user to run the voicecraft bind command"
+    default: true
+  voicecraft.command.connect:
+    description: "Allows the user to run the voicecraft connect command"
+    default: op
+  voicecraft.command.disconnect:
+    description: "Allows the user to run the voicecraft disconnect command"
+    default: op
