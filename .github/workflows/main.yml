@@ -65,11 +65,11 @@ jobs:
         uses: pmmp/setup-php-action@3.2.0
         with:
           php-version: 8.3
-          install-path: "./bin"
+          install-path: "./.bin"
           pm-version-major: 5
 
       - name: Build to .phar
-        run: php -dphar.readonly=0 ./tools/DevToolsConsoleScript.php --relative ./ --make ./ --out VoiceCraft.phar
+        run: php -dphar.readonly=0 ./tools/DevToolsConsoleScript.php --make ./ --out VoiceCraft.phar
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
